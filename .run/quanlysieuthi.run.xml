@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="quanlysieuthi" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="quanlysieuthi_api" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.quanlysieuthi_api.QuanlysieuthiApiApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
