@@ -11,5 +11,6 @@ public interface chucVuService {
     List<chucVu> getAllChucVu();
     chucVu addChucVu(chucVu cv);
     chucVu updateChucVu(String machucvu,chucVu cv);
-    List<chucVu> seachChucVu(String machuvu, String tenchucvu);
+    void  deleteChucVu(String machucvu);
+    List<chucVu> searchChucVu(String machuvu, String tenchucvu);
 }
