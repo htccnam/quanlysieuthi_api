@@ -1,8 +1,9 @@
 package com.example.quanlysieuthi_api.controller;
 
-import com.example.quanlysieuthi_api.entity.chucVu;
 import com.example.quanlysieuthi_api.Service.chucVuService;
+import com.example.quanlysieuthi_api.entity.chucVu;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,21 +21,35 @@ public class chucVuController {
 
     @PostMapping
     public ResponseEntity<?> themchucvu(@RequestBody chucVu cv){
-        try{
+       try {
             return ResponseEntity.ok(chucVuService.addChucVu(cv));
-        }
-        catch (Exception e){
-            throw new RuntimeException();
+       }catch (Exception exception){
+           return ResponseEntity.badRequest().body(exception.getMessage());
+       }
+    }
+
+    @PutMapping("/{machucvu}")
+    public ResponseEntity<?> suachucvu(@PathVariable String machucvu , @RequestBody chucVu cv){
+        try {
+            return ResponseEntity.ok(chucVuService.updateChucVu(machucvu, cv));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> suachucvu(@PathVariable String machucvu , @RequestBody chucVu cv){
-        return ResponseEntity.ok(chucVuService.updateChucVu(machucvu,cv));
+    @DeleteMapping("/{machucvu}")
+    public ResponseEntity<?> xoachucvu(@PathVariable String machucvu) {
+        try {
+            chucVuService.deleteChucVu(machucvu);
+            return ResponseEntity.ok("xóa thành công");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/search")
     public List<chucVu> searchChucVu(@RequestParam String keyword){
-        return chucVuService.seachChucVu(keyword,keyword);
+        return chucVuService.searchChucVu(keyword,keyword);
     }
 }
