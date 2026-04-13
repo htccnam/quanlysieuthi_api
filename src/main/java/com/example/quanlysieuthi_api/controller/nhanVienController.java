@@ -1,11 +1,9 @@
 package com.example.quanlysieuthi_api.controller;
 
 import com.example.quanlysieuthi_api.entity.nhanVien;
-import com.example.quanlysieuthi_api.nhanVienService.nhanVienService;
+import com.example.quanlysieuthi_api.Service.nhanVienService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,6 +12,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class nhanVienController {
     private final nhanVienService nhanVienService;
+//    @PostMapping
+//    public ResponseEntity<?> createNhanVien(@RequestBody nhanVien nv){
+//        try {
+//            nhanVien saved = nhanVienService.themNhanVien(nv);
+//            return ResponseEntity.ok(saved);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
     @GetMapping
     public List<nhanVien> getAllNhanVien(){
         return nhanVienService.getAllNhanVien();
