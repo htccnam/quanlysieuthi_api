@@ -1,4 +1,4 @@
-package com.example.quanlysieuthi_api.nhanVienService;
+package com.example.quanlysieuthi_api.Service;
 
 import com.example.quanlysieuthi_api.entity.nhanVien;
 import com.example.quanlysieuthi_api.repository.nhanVienRepository;
@@ -18,7 +18,19 @@ public class nhanVienSeviceImpl implements nhanVienService{
     }
 
     @Override
+    public void themNhanVien(nhanVien nv) {
+
+    }
+
+    @Override
     public void deletenhanVien(String manhanvien) {
 
+    }
+    public nhanVien addNhanVien(nhanVien nv){
+        if(nhanVienRepository.existsById(nv.getManhanvien())){
+            throw new RuntimeException("Mã nhân viên đã tồn tại");
+
+        }
+        return nhanVienRepository.save(nv);
     }
 }
