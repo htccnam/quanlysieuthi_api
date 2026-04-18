@@ -14,11 +14,6 @@ public class chucVuServiceImpl implements chucVuService{
     public final chucVuRepository chucVuRepository;
     public final nhanVienRepository nhanVienRepository;
 
-    @Override
-    public chucVu getChucVuById(String machucvu) {
-        return chucVuRepository.findById(machucvu)
-                .orElseThrow(()-> new RuntimeException("không tìm thấy chức vụ"+machucvu));
-    }
 
     public List<chucVu> getAllChucVu(){
         return chucVuRepository.findAll();
@@ -26,15 +21,20 @@ public class chucVuServiceImpl implements chucVuService{
 
     @Override
     public chucVu addChucVu(chucVu cv) {
-        if(chucVuRepository.existsById(cv.getMachucvu())){
+        if(chucVuRepository.existsByMachucvu(cv.getMachucvu())){
             throw new RuntimeException("mã chức vụ đã tồn tại");
         }
         return chucVuRepository.save(cv);
     }
 
     @Override
-    public chucVu updateChucVu(String machucvu, chucVu cv) {
-        chucVu existing = getChucVuById(machucvu);
+    public chucVu updateChucVu(chucVu cv) {
+        if(chucVuRepository.existsByMachucvu(cv.getMachucvu())){
+            throw new RuntimeException("mã chức vụ đã tồn tại");
+        }
+        chucVu existing=chucVuRepository.findByMachucvu(cv.getMachucvu())
+                .orElseThrow(()->new RuntimeException("không tìm thấy chức vụ"));;
+
         existing.setTenchucvu(cv.getTenchucvu());
         return chucVuRepository.save(existing);
     }
@@ -42,13 +42,15 @@ public class chucVuServiceImpl implements chucVuService{
     @Override
     public void deleteChucVu(String machucvu) {
         if(nhanVienRepository.existsByMachucvu(machucvu)){
-            throw new RuntimeException("mã nhân viên đã được chọn cho nhân viên");
+            throw new RuntimeException("mã CHỨC VỤ đã được chọn cho NHÂN VIÊN");
         }
+        chucVuRepository.findByMachucvu(machucvu)
+                .orElseThrow(()->new RuntimeException("không tìm thấy chức vụ"));
         chucVuRepository.deleteById(machucvu);
     }
 
     @Override
-    public List<chucVu> searchChucVu(String keyword, String keyword2) {
-        return chucVuRepository.findByMachucvuContainingOrTenchucvuContaining(keyword,keyword2);
+    public List<chucVu> searchChucVu(String keyword) {
+        return chucVuRepository.findByMachucvuContainingOrTenchucvuContaining(keyword,keyword);
     }
 }
