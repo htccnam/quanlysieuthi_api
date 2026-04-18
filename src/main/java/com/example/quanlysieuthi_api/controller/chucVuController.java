@@ -31,7 +31,7 @@ public class chucVuController {
     @PutMapping("/{machucvu}")
     public ResponseEntity<?> suachucvu(@PathVariable String machucvu , @RequestBody chucVu cv){
         try {
-            return ResponseEntity.ok(chucVuService.updateChucVu(machucvu, cv));
+            return ResponseEntity.ok(chucVuService.updateChucVu(cv));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -50,6 +50,6 @@ public class chucVuController {
 
     @GetMapping("/search")
     public List<chucVu> searchChucVu(@RequestParam String keyword){
-        return chucVuService.searchChucVu(keyword,keyword);
+        return chucVuService.searchChucVu(keyword);
     }
 }

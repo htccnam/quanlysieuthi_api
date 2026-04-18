@@ -7,10 +7,9 @@ import java.util.List;
 
 @Service
 public interface chucVuService {
-    chucVu getChucVuById(String machucvu);
     List<chucVu> getAllChucVu();
     chucVu addChucVu(chucVu cv);
-    chucVu updateChucVu(String machucvu,chucVu cv);
+    chucVu updateChucVu(chucVu cv);
     void  deleteChucVu(String machucvu);
-    List<chucVu> searchChucVu(String machuvu, String tenchucvu);
+    List<chucVu> searchChucVu(String keyword);
 }
