@@ -18,13 +18,6 @@ public class nhanVienServiceImpl implements nhanVienService{
     }
 
     @Override
-    public nhanVien findByManhanvien(String manhanvien) {
-        return nhanVienRepository.findByManhanvien(manhanvien)
-                .orElseThrow(()->new RuntimeException("không tìm thấy nhân viên"));
-    }
-
-
-    @Override
     public nhanVien themNhanVien(nhanVien nv) {
         if(nhanVienRepository.existsByManhanvien(nv.getManhanvien())){
             throw new RuntimeException("mã nhân viên đã tồn tại");
@@ -33,8 +26,9 @@ public class nhanVienServiceImpl implements nhanVienService{
     }
 
     @Override
-    public nhanVien suaNhanVien(nhanVien nv) {
-        nhanVien existing = findByManhanvien(nv.getManhanvien());
+    public nhanVien updatenhanvien(nhanVien nv) {
+        nhanVien existing=nhanVienRepository.findByManhanvien(nv.getManhanvien())
+                .orElseThrow(()->new RuntimeException("không tìm thấy nhân viên"));
         existing.setTennhanvien(nv.getTennhanvien());
         existing.setNgaysinh(nv.getNgaysinh());
         existing.setGioitinh(nv.getGioitinh());
@@ -48,13 +42,11 @@ public class nhanVienServiceImpl implements nhanVienService{
 
     @Override
     public void deletenhanVien(String manhanvien) {
-
+        nhanVienRepository.deleteById(manhanvien);
     }
 
     @Override
-    public void checktrung(nhanVien nv) {
-        if(nhanVienRepository.existsByManhanvien(nv.getManhanvien())){
-            throw  new RuntimeException("Mã nhân viên đã tồn tại");
-        }
+    public List<nhanVien> search(String key) {
+        return nhanVienRepository.findByManhanvienContainingOrTennhanvienContaining(key,key);
     }
 }

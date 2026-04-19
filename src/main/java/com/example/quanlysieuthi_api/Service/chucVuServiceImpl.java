@@ -29,9 +29,6 @@ public class chucVuServiceImpl implements chucVuService{
 
     @Override
     public chucVu updateChucVu(chucVu cv) {
-        if(chucVuRepository.existsByMachucvu(cv.getMachucvu())){
-            throw new RuntimeException("mã chức vụ đã tồn tại");
-        }
         chucVu existing=chucVuRepository.findByMachucvu(cv.getMachucvu())
                 .orElseThrow(()->new RuntimeException("không tìm thấy chức vụ"));;
 
