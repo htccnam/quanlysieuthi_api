@@ -1,5 +1,6 @@
 package com.example.quanlysieuthi_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,6 +25,7 @@ public class nhanVien {
     private String tennhanvien;
 
     @Column(name = "ngaysinh" , nullable = true )
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ngaysinh;
 
     @Column(name = "gioitinh" , nullable = true , length = 10)

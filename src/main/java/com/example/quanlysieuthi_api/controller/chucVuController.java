@@ -29,7 +29,7 @@ public class chucVuController {
     }
 
     @PutMapping("/{machucvu}")
-    public ResponseEntity<?> suachucvu(@PathVariable String machucvu , @RequestBody chucVu cv){
+    public ResponseEntity<?> suachucvu(@RequestBody chucVu cv){
         try {
             return ResponseEntity.ok(chucVuService.updateChucVu(cv));
         }catch (Exception e){

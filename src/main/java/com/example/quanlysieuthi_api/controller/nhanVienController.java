@@ -14,7 +14,7 @@ import java.util.List;
 public class nhanVienController {
     private final nhanVienService nhanVienService;
     @GetMapping
-    public List<nhanVien> getAllNhanVien(){
+    public List<nhanVien> hienthinhanvien(){
         return nhanVienService.getAllNhanVien();
     }
     @PostMapping
@@ -24,5 +24,23 @@ public class nhanVienController {
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+    @PutMapping("/{manhanvien}")
+    public ResponseEntity<?> suanhanvien(@RequestBody nhanVien nv){
+        try{
+            return ResponseEntity.ok(nhanVienService.updatenhanvien(nv));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{manhanvien}")
+    public void xoanhanvien(@PathVariable String manhanvien){
+        nhanVienService.deletenhanVien(manhanvien);
+    }
+
+    @GetMapping("/search")
+    public List<nhanVien> timkiemnhanvien(@RequestParam String keyword){
+        return nhanVienService.search(keyword);
     }
 }
