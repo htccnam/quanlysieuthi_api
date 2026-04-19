@@ -26,7 +26,6 @@ public class DonHang {
     private String makhuyenmai;
 
     @Column(name = "ngaylap")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date ngaylap;
 
     @Column(name = "phuongthucban", length = 50)
