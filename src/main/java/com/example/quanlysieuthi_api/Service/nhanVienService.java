@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface nhanVienService {
     List<nhanVien> getAllNhanVien();
-    void themNhanVien(nhanVien nv);
+    nhanVien themNhanVien(nhanVien nv);
+    nhanVien updatenhanvien(nhanVien nv);
     void deletenhanVien(String manhanvien);
+    List<nhanVien> search(String key);
 }
