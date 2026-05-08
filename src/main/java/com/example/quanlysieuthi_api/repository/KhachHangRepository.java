@@ -7,9 +7,7 @@ import java.util.List;
 @Repository
 public interface KhachHangRepository extends JpaRepository<KhachHang, String> {
 
-    // Spring tự động generate câu lệnh SQL giống: SELECT * FROM khachhang WHERE makhachhang LIKE %?% OR tenkhachhang LIKE %?%
     List<KhachHang> findByMaKHContainingIgnoreCaseOrHoTenContainingIgnoreCase(String keyword1, String keyword2);
 
-    // Hàm kiểm tra trùng mã
     boolean existsById(String maKH);
 }

@@ -5,6 +5,7 @@ import com.example.quanlysieuthi_api.repository.KhachHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @Service
 public class KhachHangService {
@@ -50,7 +51,13 @@ public class KhachHangService {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Không tìm thấy khách hàng để xóa");
         }
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            // Khi xóa khách hàng đã có mã trong bảng hóa đơn, DB sẽ chặn và ném lỗi này
+            throw new RuntimeException("Không thể xóa khách hàng đang có đơn hàng");
+        }
     }
-
 }
+
+
