@@ -1,10 +1,11 @@
 package com.example.quanlysieuthi_api.controller;
 
-import com.example.quanlysieuthi_api.entity.KhachHang;
 import com.example.quanlysieuthi_api.Service.KhachHangService;
+import com.example.quanlysieuthi_api.entity.KhachHang;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

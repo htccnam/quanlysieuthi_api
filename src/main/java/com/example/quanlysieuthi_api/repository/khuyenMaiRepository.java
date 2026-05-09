@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface khuyenMaiRepository extends JpaRepository<khuyenMai,String> {
+public interface khuyenMaiRepository extends JpaRepository<khuyenMai, String> {
     List<khuyenMai> findByMakhuyenmaiContainingOrTenkhuyenmaiContaining(String makhuyenmai, String tenkhuyenmai);
 
     boolean existsByMakhuyenmai(String makhuyenmai);

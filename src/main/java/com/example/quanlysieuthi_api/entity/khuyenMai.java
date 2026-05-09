@@ -14,19 +14,19 @@ import java.util.Date;
 @Table(name = "khuyenmai")
 public class khuyenMai {
     @Id
-    @Column(name = "makhuyenmai" , length = 50)
+    @Column(name = "makhuyenmai", length = 50)
     private String makhuyenmai;
 
-    @Column(name = "tenkhuyenmai" , length = 50)
+    @Column(name = "tenkhuyenmai", length = 50)
     private String tenkhuyenmai;
 
-    @Column(name = "mota" ,length = 200)
+    @Column(name = "mota", length = 200)
     private String mota;
 
     @Column(name = "sotiengiam")
     private int sotiengiam;
 
-    @Column(name = "ngaytao" )
+    @Column(name = "ngaytao")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ngaytao;
 }

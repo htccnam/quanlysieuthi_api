@@ -8,8 +8,12 @@ import java.util.List;
 @Service
 public interface chucVuService {
     List<chucVu> getAllChucVu();
+
     chucVu addChucVu(chucVu cv);
+
     chucVu updateChucVu(chucVu cv);
-    void  deleteChucVu(String machucvu);
+
+    void deleteChucVu(String machucvu);
+
     List<chucVu> searchChucVu(String keyword);
 }
