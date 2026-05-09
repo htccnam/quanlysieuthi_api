@@ -27,8 +27,7 @@ public class KhachHangService {
         if (repository.existsById(khachHang.getMaKH())) {
             throw new RuntimeException("Mã khách hàng đã tồn tại!");
         }
-        // Điểm mặc định khi thêm mới luôn là 0 (Giữ nguyên logic cũ)
-        khachHang.setDiemtichluy(0); // Luôn để mặc định là 0 khi thêm mới
+        khachHang.setDiemtichluy(0);
         return repository.save(khachHang);
     }
 
