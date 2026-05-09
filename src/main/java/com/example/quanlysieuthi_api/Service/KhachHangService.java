@@ -3,9 +3,10 @@ package com.example.quanlysieuthi_api.Service;
 import com.example.quanlysieuthi_api.entity.KhachHang;
 import com.example.quanlysieuthi_api.repository.KhachHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class KhachHangService {

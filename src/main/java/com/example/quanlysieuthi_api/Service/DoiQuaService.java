@@ -15,9 +15,12 @@ import java.util.List;
 
 @Service
 public class DoiQuaService {
-    @Autowired private QuaTangRepository quaTangRepo;
-    @Autowired private LichSuDoiQuaRepository lichSuRepo;
-    @Autowired private KhachHangRepository khachHangRepo;
+    @Autowired
+    private QuaTangRepository quaTangRepo;
+    @Autowired
+    private LichSuDoiQuaRepository lichSuRepo;
+    @Autowired
+    private KhachHangRepository khachHangRepo;
 
     public List<QuaTang> layDanhSachQua() {
         return quaTangRepo.findAll();

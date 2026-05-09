@@ -15,7 +15,7 @@ import lombok.*;
 @Table(name = "chucvu")
 public class chucVu {
     @Id
-    @Column(name = "machucvu",nullable = false ,length = 50)
+    @Column(name = "machucvu", nullable = false, length = 50)
     private String machucvu;
 
     @Column(name = "tenchucvu", length = 50)

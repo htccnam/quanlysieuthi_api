@@ -9,8 +9,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class khuyenMaiServiceImpl implements khuyenMaiService{
+public class khuyenMaiServiceImpl implements khuyenMaiService {
     public final khuyenMaiRepository khuyemmairepo;
+
     @Override
     public List<khuyenMai> getAllKhuyenMai() {
         return khuyemmairepo.findAll();
