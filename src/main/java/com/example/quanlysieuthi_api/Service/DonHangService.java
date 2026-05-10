@@ -12,4 +12,6 @@ public interface DonHangService {
     Map<String, Object> getChiTietDonHang(String madonhang);
 
     List<DonHang> getAllDonHang();
+    void xoaDonHang(String madonhang);
+    DonHang capNhatDon(String madonhang, DonHang dh, List<ChiTiet> dsChiTiet);
 }
