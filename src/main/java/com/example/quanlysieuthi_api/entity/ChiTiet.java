@@ -1,5 +1,6 @@
 package com.example.quanlysieuthi_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,24 +13,22 @@ import lombok.*;
 @Table(name = "chitietdonhang")
 public class ChiTiet {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(name = "madonhang", nullable = false, length = 50)
+    @JsonProperty("madonhang")
     private String madonhang;
 
-    @Column(name = "masanpham", length = 50)
+    @JsonProperty("masanpham")
     private String masanpham;
 
-    @Column(name = "tensanpham", length = 100)
+    @JsonProperty("tensanpham")
     private String tensanpham;
 
-    @Column(name = "soluong")
+    @JsonProperty("soluong")
     private Integer soluong;
 
-    @Column(name = "dongia")
+    @JsonProperty("dongia")
     private Double dongia;
 
-    @Column(name = "thanhtien")
+    @JsonProperty("thanhtien")
     private Double thanhtien;
 }
