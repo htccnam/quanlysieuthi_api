@@ -19,18 +19,16 @@ public class DonHangServiceImpl implements DonHangService {
     private final ChiTietRepo ctRepo;
 
     @Override
-    @Transactional // Đảm bảo nếu lỗi chi tiết thì đơn hàng cũng không bị lưu nhầm (Rollback)
+    @Transactional(rollbackFor = Exception.class)
     public DonHang taoDonHang(DonHang dh, List<ChiTiet> dsChiTiet) {
-        // 1. Lưu bảng cha trước để có mã đơn hàng
         DonHang savedDh = dhRepo.save(dh);
 
-        // 2. Gán mã đơn hàng cho từng chi tiết và lưu danh sách chi tiết
         if (dsChiTiet != null && !dsChiTiet.isEmpty()) {
             for (ChiTiet ct : dsChiTiet) {
                 //ct.setId(null);
-                ct.setMadonhang(savedDh.getMadonhang()); // Set khóa ngoại
+                ct.setMadonhang(savedDh.getMadonhang());
             }
-            ctRepo.saveAll(dsChiTiet); // Lưu nhiều dòng cùng lúc
+            ctRepo.saveAll(dsChiTiet);
         }
         return savedDh;
     }
@@ -54,22 +52,20 @@ public class DonHangServiceImpl implements DonHangService {
     @Override
     @Transactional
     public void xoaDonHang(String madonhang) {
-        // Tìm và xóa tất cả chi tiết thuộc đơn hàng này
+
         List<ChiTiet> chiTiets = ctRepo.findByMadonhang(madonhang);
         ctRepo.deleteAll(chiTiets);
 
-        // Sau đó xóa đơn hàng
         dhRepo.deleteById(madonhang);
     }
 
     @Override
     @Transactional
     public DonHang capNhatDon(String madonhang, DonHang dh, List<ChiTiet> dsChiTiet) {
-        // 1. Kiểm tra đơn hàng có tồn tại không
+
         DonHang existingDh = dhRepo.findById(madonhang)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng mã: " + madonhang));
 
-        // 2. Cập nhật các thông tin cơ bản của đơn hàng
         existingDh.setMakhachhang(dh.getMakhachhang());
         existingDh.setManhanvien(dh.getManhanvien());
         existingDh.setNgaylap(dh.getNgaylap());
