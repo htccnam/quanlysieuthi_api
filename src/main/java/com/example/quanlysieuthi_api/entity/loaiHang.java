@@ -12,12 +12,12 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@Table(name = "chucvu")
-public class chucVu {
+@Table(name = "loaihang")
+public class loaiHang {
     @Id
-    @Column(name = "machucvu", nullable = false, length = 50)
-    private String machucvu;
+    @Column(name = "maloai", nullable = false, length = 50)
+    private String maloai;
 
-    @Column(name = "tenchucvu", length = 50)
-    private String tenchucvu;
+    @Column(name = "tenloai", length = 100)
+    private String tenloai;
 }

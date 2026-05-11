@@ -10,18 +10,18 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class chucVuServiceImpl implements chucVuService{
+public class chucVuServiceImpl implements chucVuService {
     public final chucVuRepository chucVuRepository;
     public final nhanVienRepository nhanVienRepository;
 
 
-    public List<chucVu> getAllChucVu(){
+    public List<chucVu> getAllChucVu() {
         return chucVuRepository.findAll();
     }
 
     @Override
     public chucVu addChucVu(chucVu cv) {
-        if(chucVuRepository.existsByMachucvu(cv.getMachucvu())){
+        if (chucVuRepository.existsByMachucvu(cv.getMachucvu())) {
             throw new RuntimeException("mã chức vụ đã tồn tại");
         }
         return chucVuRepository.save(cv);
@@ -29,11 +29,9 @@ public class chucVuServiceImpl implements chucVuService{
 
     @Override
     public chucVu updateChucVu(chucVu cv) {
-        if(chucVuRepository.existsByMachucvu(cv.getMachucvu())){
-            throw new RuntimeException("mã chức vụ đã tồn tại");
-        }
-        chucVu existing=chucVuRepository.findByMachucvu(cv.getMachucvu())
-                .orElseThrow(()->new RuntimeException("không tìm thấy chức vụ"));;
+        chucVu existing = chucVuRepository.findByMachucvu(cv.getMachucvu())
+                .orElseThrow(() -> new RuntimeException("không tìm thấy chức vụ"));
+        ;
 
         existing.setTenchucvu(cv.getTenchucvu());
         return chucVuRepository.save(existing);
@@ -41,16 +39,16 @@ public class chucVuServiceImpl implements chucVuService{
 
     @Override
     public void deleteChucVu(String machucvu) {
-        if(nhanVienRepository.existsByMachucvu(machucvu)){
+        if (nhanVienRepository.existsByMachucvu(machucvu)) {
             throw new RuntimeException("mã CHỨC VỤ đã được chọn cho NHÂN VIÊN");
         }
         chucVuRepository.findByMachucvu(machucvu)
-                .orElseThrow(()->new RuntimeException("không tìm thấy chức vụ"));
+                .orElseThrow(() -> new RuntimeException("không tìm thấy chức vụ"));
         chucVuRepository.deleteById(machucvu);
     }
 
     @Override
     public List<chucVu> searchChucVu(String keyword) {
-        return chucVuRepository.findByMachucvuContainingOrTenchucvuContaining(keyword,keyword);
+        return chucVuRepository.findByMachucvuContainingOrTenchucvuContaining(keyword, keyword);
     }
 }

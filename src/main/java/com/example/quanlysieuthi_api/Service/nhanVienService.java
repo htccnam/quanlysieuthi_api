@@ -6,9 +6,12 @@ import java.util.List;
 
 public interface nhanVienService {
     List<nhanVien> getAllNhanVien();
-    nhanVien findByManhanvien(String manhanvien);
+
     nhanVien themNhanVien(nhanVien nv);
-    nhanVien suaNhanVien(nhanVien nv);
+
+    nhanVien updatenhanvien(nhanVien nv);
+
     void deletenhanVien(String manhanvien);
-    void checktrung(nhanVien nv);
+
+    List<nhanVien> search(String key);
 }

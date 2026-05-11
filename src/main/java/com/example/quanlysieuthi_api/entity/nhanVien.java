@@ -1,5 +1,6 @@
 package com.example.quanlysieuthi_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,28 +18,29 @@ import java.util.Date;
 @Table(name = "nhanvien")
 public class nhanVien {
     @Id
-    @Column(name= "manhanvien" , nullable = false ,length = 50)
+    @Column(name = "manhanvien", nullable = false, length = 50)
     private String manhanvien;
 
-    @Column(name = "tennhanvien" ,nullable = true,length = 50)
+    @Column(name = "tennhanvien", nullable = true, length = 50)
     private String tennhanvien;
 
-    @Column(name = "ngaysinh" , nullable = true )
+    @Column(name = "ngaysinh", nullable = true)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ngaysinh;
 
-    @Column(name = "gioitinh" , nullable = true , length = 10)
-    private  String gioitinh;
+    @Column(name = "gioitinh", nullable = true, length = 10)
+    private String gioitinh;
 
-    @Column(name = "sodienthoai" , nullable = true, length = 50)
+    @Column(name = "sodienthoai", nullable = true, length = 50)
     private String sodienthoai;
 
-    @Column(name = "email" , nullable = true, length = 50)
+    @Column(name = "email", nullable = true, length = 50)
     private String email;
 
-    @Column(name = "diachi" , nullable = true, length = 255)
+    @Column(name = "diachi", nullable = true, length = 255)
     private String diachi;
 
-    @Column(name = "machucvu" , nullable = true, length = 50)
+    @Column(name = "machucvu", nullable = true, length = 50)
     private String machucvu;
 
 
