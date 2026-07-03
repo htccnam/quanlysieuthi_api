@@ -14,4 +14,5 @@ public interface DonHangService {
     List<DonHang> getAllDonHang();
     void xoaDonHang(String madonhang);
     DonHang capNhatDon(String madonhang, DonHang dh, List<ChiTiet> dsChiTiet);
+    Double tinhTongChiTieu(String maKH);
 }

@@ -38,7 +38,6 @@ public class DonHangController {
         }
     }
 
-    // Lấy toàn bộ danh sách đơn hàng
     @GetMapping
     public List<DonHang> getAll() {
         return donHangService.getAllDonHang();
@@ -67,12 +66,17 @@ public class DonHangController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Lỗi tạo đơn: " + e.getMessage());
         }
+
     }
 
-    // Class phụ trợ để nhận JSON gửi từ Client chứa cả donHang và chiTiet
     @Data
     public static class DonHangRequest {
         private DonHang donHang;
         private List<ChiTiet> chitiet;
+    }
+    @GetMapping("/tongchi-tieu/{maKH}")
+    public ResponseEntity<?> getTongChiTieu(@PathVariable String maKH) {
+        Double tongTien = donHangService.tinhTongChiTieu(maKH);
+        return ResponseEntity.ok(tongTien != null ? tongTien : 0.0);
     }
 }

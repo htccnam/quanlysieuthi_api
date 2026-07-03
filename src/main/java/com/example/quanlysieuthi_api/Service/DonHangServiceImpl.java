@@ -17,6 +17,8 @@ import java.util.Map;
 public class DonHangServiceImpl implements DonHangService {
     private final DonHangRepo dhRepo;
     private final ChiTietRepo ctRepo;
+    private com.example.quanlysieuthi_api.repository.KhachHangRepository khachHangRepo;
+
 
     @Override
     @Transactional // Đảm bảo nếu lỗi chi tiết thì đơn hàng cũng không bị lưu nhầm (Rollback)
@@ -93,4 +95,9 @@ public class DonHangServiceImpl implements DonHangService {
 
         return existingDh;
     }
+    @Override
+    public Double tinhTongChiTieu(String maKH) {
+        return dhRepo.sumTongTienByMaKH(maKH);
+    }
+
 }
