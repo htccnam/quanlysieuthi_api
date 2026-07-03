@@ -17,7 +17,7 @@ import java.util.Map;
 public class DonHangController {
     private final DonHangService donHangService;
 
-    @DeleteMapping("/{madonhang}") // Endpoint: DELETE /api/donhang/{madonhang}
+    @DeleteMapping("/{madonhang}")
     public ResponseEntity<?> xoaDonHang(@PathVariable String madonhang) {
         try {
             donHangService.xoaDonHang(madonhang);
@@ -27,10 +27,9 @@ public class DonHangController {
         }
     }
 
-    @PutMapping("/{madonhang}") // Endpoint: PUT /api/donhang/{madonhang}
+    @PutMapping("/{madonhang}")
     public ResponseEntity<?> capNhatDonHang(@PathVariable String madonhang, @RequestBody DonHangRequest request) {
         try {
-            // Logic service: Xóa chi tiết cũ -> Cập nhật Đơn hàng -> Thêm chi tiết mới
             DonHang updated = donHangService.capNhatDon(madonhang, request.getDonHang(), request.getChitiet());
             return ResponseEntity.ok(updated);
         } catch (Exception e) {
@@ -51,16 +50,14 @@ public class DonHangController {
 
     @GetMapping("/{madonhang}/chitiet")
     public ResponseEntity<?> getOnlyChiTiet(@PathVariable String madonhang) {
-        // Lấy toàn bộ Map ra trước
         Map<String, Object> data = donHangService.getChiTietDonHang(madonhang);
-        // Chỉ trả về phần danh sách chi tiết
         return ResponseEntity.ok(data.get("chitiet"));
     }
 
-    @PostMapping // Endpoint: POST /api/donhang
+    @PostMapping
     public ResponseEntity<?> taoDonHang(@RequestBody DonHangRequest request) {
         try {
-            // donHangService sẽ xử lý lưu cả 2 bảng
+
             DonHang saved = donHangService.taoDonHang(request.getDonHang(), request.getChitiet());
             return ResponseEntity.ok(saved);
         } catch (Exception e) {
